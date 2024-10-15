@@ -6,8 +6,8 @@ import psycopg2
 import os
 import streamlit.components.v1 as components
 
-# Conexão com o Supabase (string completa)
-DATABASE_URL = 'postgresql://postgres.iykkmaqmyterupyxzdej:4UJzihawH1bEFjna@aws-0-sa-east-1.pooler.supabase.com:6543/postgres'
+# Conexão com o Supabase (usando secrets do Streamlit)
+DATABASE_URL = st.secrets["DATABASE_URL"]
 
 def conectar_banco():
     """Conecta ao banco de dados Supabase."""
