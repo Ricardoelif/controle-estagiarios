@@ -8,22 +8,23 @@ from alterar_horario import alterar_horario
 from login import tela_login
 import logging
 
-# Set the root logger to WARNING to suppress DEBUG messages from libraries
+# Configurar logging
 logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
-
-# Create a logger for this module
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+# Configurar a página
+st.set_page_config(page_title="Controle de Estagiários", layout="wide")
 
 # Função principal
 def main():
     conn = conectar_banco()
-    logger.debug("Database connection established.")
+    logger.debug("Conexão com o banco de dados estabelecida.")
 
     # Verificar se o usuário já está logado
     if 'logado' not in st.session_state:
         st.session_state['logado'] = False
-        logger.debug("User not logged in.")
+        logger.debug("Usuário não está logado.")
 
     if not st.session_state['logado']:
         # Mostrar tela de login se não estiver logado
@@ -34,7 +35,7 @@ def main():
 
 # Função para criar o menu principal
 def criar_menu(conn):
-    logger.debug("Creating main menu.")
+    logger.debug("Criando o menu principal.")
     # Definir o menu usando streamlit-option-menu
     with st.sidebar:
         selected = option_menu(
